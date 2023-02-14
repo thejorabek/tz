@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task/screens/weather_screen.dart';
+import 'package:task/core/app/app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WeatherScreen(),
+      home: App(),
     );
   }
 }

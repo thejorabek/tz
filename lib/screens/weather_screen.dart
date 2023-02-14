@@ -1,5 +1,14 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:task/bloc/time_bloc/time_bloc.dart';
+import 'package:task/bloc/time_bloc/time_state.dart';
+import 'package:task/core/constants/constant.dart';
+import 'package:task/data/models/time_model.dart';
+import 'package:task/data/services/time_repository.dart';
+import 'package:task/widgets/stack.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -9,79 +18,64 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  var controller = StreamController.broadcast();
+
+  @override
+  void initState() {
+    super.initState();
+    Constants.getTimeStream();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return AnnotatedRegion(
-      value: SystemUiOverlayStyle(
+      value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
       ),
       child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(children: [
-          Image.asset(
-            'assets/background.png',
-            height: double.infinity,
-            width: double.infinity,
-            alignment: Alignment.center,
-            fit: BoxFit.cover,
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(
-                horizontal: width * .12, vertical: height * .12),
-            width: double.infinity,
-            height: height * .6,
-            decoration: BoxDecoration(
-                border: Border.all(width: width * .007, color: Colors.blue),
-                borderRadius: BorderRadius.circular(15)),
-          ),
-          Padding(
-              padding: EdgeInsets.only(left: width * .36, top: height * .115),
-              child: Container(
-                  width: width * .29,
-                  height: height * .01,
-                  color: Colors.white)),
-          Padding(
-              padding: EdgeInsets.only(left: width * .37),
-              child: Image.asset(
-                'assets/gerb.png',
-                width: width * .27,
-                height: height * .27,
-              )),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: width * .2, vertical: height * .27),
-            child: Column(
-              children: [
-                Text(
-                  '11:27',
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 90,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: height * .02),
-                Text(
-                  '12 май',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 55,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: height * .03),
-                Text(
-                  'Сешанба',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 50,
-                      ),
-                )
-              ],
-            ),
-          )
-        ]),
-      ),
+          backgroundColor: Colors.white,
+          body: BlocProvider(
+            create: (context) => TimeBloc(TimeRepository()),
+            child: BlocBuilder<TimeBloc, TimeState>(builder: (context, state) {
+              if (state is TimeLoadingState) {
+                return StreamBuilder(
+                    stream: Constants.getTimeStream(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        return MStack(
+                          width: width,
+                          height: height,
+                          hour: snapshot.data.toString(),
+                          weekday: 4,
+                          weather: 18,
+                          day: 14,
+                        );
+                      }
+                    });
+              } else if (state is TimeLoadedState) {
+                List<TimeModel> time = state.time;
+                return SizedBox();
+              } else if (state is TimeErrorState) {
+                return Center(
+                  child: Text('Error'),
+                );
+              } else {
+                return Text('Unknown');
+              }
+            }),
+          )),
     );
   }
 }
