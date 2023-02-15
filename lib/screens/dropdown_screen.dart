@@ -10,6 +10,8 @@ class DropdownScreen extends StatefulWidget {
 class _DropdownScreenState extends State<DropdownScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.green.shade900,
+    );
   }
 }
