@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/bloc/time_bloc/time_bloc.dart';
 import 'package:task/bloc/time_bloc/time_event.dart';
 import 'package:task/data/services/time_repository.dart';
-import 'package:task/screens/weather_screen.dart';
+import 'package:task/screens/main_screen.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -22,7 +22,7 @@ class _AppState extends State<App> {
               TimeBloc(TimeRepository())..add(LoadTimeEvent()),
         ),
       ],
-      child: WeatherScreen(),
+      child: MainScreen(),
     );
   }
 }

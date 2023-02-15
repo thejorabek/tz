@@ -56,6 +56,7 @@ class MStack extends StatelessWidget {
       Padding(
         padding: EdgeInsets.only(top: height * .25, left: width * .17),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               '${hour.toString()}',
