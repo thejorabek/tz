@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:task/bloc/time_bloc/time_bloc.dart';
 import 'package:task/bloc/time_bloc/time_state.dart';
 import 'package:task/core/constants/constant.dart';
@@ -58,9 +57,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           width: width,
                           height: height,
                           hour: snapshot.data.toString(),
-                          weekday: 4,
+                          weekday: DateTime.now().weekday,
                           weather: 18,
-                          day: 14,
+                          day: DateTime.now().day,
                         );
                       }
                     });
