@@ -38,7 +38,7 @@ class _DropdownScreenState extends State<DropdownScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Viloyat',
                   style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
@@ -48,14 +48,14 @@ class _DropdownScreenState extends State<DropdownScreen> {
                     child: CustomDropdown.search(
                       fillColor: Colors.green,
                       borderRadius: BorderRadius.circular(20),
-                      fieldSuffixIcon: Icon(Icons.arrow_drop_down,
+                      fieldSuffixIcon: const Icon(Icons.arrow_drop_down,
                           size: 35, color: Colors.white),
                       hintText: 'Viloyatni tanlang',
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white),
                       items: MyDB.regions,
                       controller: textCon,
-                      listItemStyle: TextStyle(color: Colors.black),
-                      selectedStyle: TextStyle(color: Colors.white),
+                      listItemStyle: const TextStyle(color: Colors.black),
+                      selectedStyle: const TextStyle(color: Colors.white),
                       onChanged: (v) {
                         setState(() {
                           selectedR = v;
@@ -63,7 +63,7 @@ class _DropdownScreenState extends State<DropdownScreen> {
                       },
                     )),
                 SizedBox(height: height * .05),
-                Text(
+                const Text(
                   'Tuman',
                   style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
@@ -73,10 +73,10 @@ class _DropdownScreenState extends State<DropdownScreen> {
                     child: CustomDropdown.search(
                       fillColor: Colors.green,
                       borderRadius: BorderRadius.circular(20),
-                      fieldSuffixIcon: Icon(Icons.arrow_drop_down,
+                      fieldSuffixIcon: const Icon(Icons.arrow_drop_down,
                           size: 35, color: Colors.white),
                       hintText: 'Tumanni tanlang',
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white),
                       items: selectedR.isEmpty
                           ? MyDB.regions
                           : Func.returnDistrict(selectedR),
@@ -87,7 +87,7 @@ class _DropdownScreenState extends State<DropdownScreen> {
                           v = selectedD;
                         });
                       },
-                      selectedStyle: TextStyle(color: Colors.white),
+                      selectedStyle: const TextStyle(color: Colors.white),
                     )),
               ],
             ),
@@ -99,7 +99,7 @@ class _DropdownScreenState extends State<DropdownScreen> {
                 color: Colors.amber, borderRadius: BorderRadius.circular(20)),
             width: width * .4,
             height: height * .07,
-            child: Center(
+            child: const Center(
                 child: Text(
               'Boshlash',
               style: TextStyle(color: Colors.black, fontSize: 18),

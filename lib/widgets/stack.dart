@@ -70,7 +70,7 @@ class MStack extends StatelessWidget {
                   height: height * .27,
                 )),
             Padding(
-              padding: EdgeInsets.only(top: height * .25, left: width * .17),
+              padding: EdgeInsets.only(top: height * .25, left: width * .2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
