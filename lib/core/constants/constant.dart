@@ -50,4 +50,20 @@ class Constants {
       return day;
     });
   }
+
+  static List regions = [
+    'Tashkent',
+    'Andijan',
+    'Bukhara',
+    'Gulistan',
+    'Jizzakh',
+    'Qarshi',
+    'Navoiy',
+    'Namangan',
+    'Nukus',
+    'Samarkand',
+    'Termez',
+    'Urgench',
+    'Fergana',
+  ];
 }
