@@ -26,7 +26,7 @@ class _DropdownScreenState extends State<DropdownScreen> {
       body: SingleChildScrollView(
         child: Column(children: [
           Padding(
-            padding: EdgeInsets.only(left: width * .07),
+            padding: EdgeInsets.only(left: width * .1),
             child: Image.asset(
               'assets/image.png',
               width: width * .45,
@@ -54,6 +54,7 @@ class _DropdownScreenState extends State<DropdownScreen> {
                       hintStyle: TextStyle(color: Colors.white),
                       items: MyDB.regions,
                       controller: textCon,
+                      listItemStyle: TextStyle(color: Colors.black),
                       selectedStyle: TextStyle(color: Colors.white),
                       onChanged: (v) {
                         setState(() {
@@ -80,6 +81,7 @@ class _DropdownScreenState extends State<DropdownScreen> {
                           ? MyDB.regions
                           : Func.returnDistrict(selectedR),
                       controller: textCon2,
+                      listItemStyle: TextStyle(color: Colors.black),
                       onChanged: (v) {
                         setState(() {
                           v = selectedD;
