@@ -9,6 +9,7 @@ import 'package:task/core/theme/theme.dart';
 import 'package:task/data/models/time_model.dart';
 import 'package:task/data/services/time_repository.dart';
 import 'package:task/widgets/stack.dart';
+import 'package:wakelock/wakelock.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -23,6 +24,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
+    Wakelock.enable();
     Constants.getTimeStream();
   }
 
